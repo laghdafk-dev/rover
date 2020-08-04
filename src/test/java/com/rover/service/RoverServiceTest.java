@@ -1,24 +1,24 @@
-package com.rover;
+package com.rover.service;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.annotation.Resource;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.rover.MyAppTests;
 import com.rover.exception.ImpossibleMoveException;
 import com.rover.exception.UnknownMoveException;
 import com.rover.model.Heading;
 import com.rover.model.Rover;
 import com.rover.service.RoverService;
-import com.rover.service.impl.RoverServiceImpl;
+
 
 
 
@@ -28,77 +28,76 @@ import com.rover.service.impl.RoverServiceImpl;
  *
  */
 
-@ExtendWith(SpringExtension.class)
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
-@ContextConfiguration(classes = RoverServiceImpl.class, loader = AnnotationConfigContextLoader.class)
-class RoverServiceTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = MyAppTests.class)
+public class RoverServiceTest {
 	
 	@Resource
 	private RoverService roverService;
 	
 	@Test
-	void testLeftSpin() {
+	public void testLeftSpin() {
 		int x = 1;
 		int y = 1;
 		Heading h = Heading.N;
 		Rover rover = new Rover(x, y, h);
 		  
 		roverService.leftSpin(rover);
-		assert(rover.getX() == x);
-		assert(rover.getY() == y);
-		assert(rover.getH() == Heading.E);
+		assertEquals(x, rover.getX());
+		assertEquals(y, rover.getY());
+		assertEquals(Heading.E, rover.getH());
 		  
 		roverService.leftSpin(rover);
-		assert(rover.getX() == x);
-		assert(rover.getY() == y);
-		assert(rover.getH() == Heading.S);
+		assertEquals(x, rover.getX());
+		assertEquals(y, rover.getY());
+		assertEquals(Heading.S, rover.getH());
 		 
 		roverService.leftSpin(rover);
-		assert(rover.getX() == x);
-		assert(rover.getY() == y);
-		assert(rover.getH() == Heading.W);
+		assertEquals(x, rover.getX());
+		assertEquals(y, rover.getY());
+		assertEquals(Heading.W, rover.getH());
+
 		 
 		roverService.leftSpin(rover);
-		assert(rover.getX() == x);
-		assert(rover.getY() == y);
-		assert(rover.getH() == Heading.N);
+		assertEquals(x, rover.getX());
+		assertEquals(y, rover.getY());
+		assertEquals(Heading.N, rover.getH());
 		  
 		System.out.println("TEST LEFTSPIN:------------------SUCCESS-----------");
 	  }
 	
 	  @Test
-	  void testRightSpin() {
+	  public void testRightSpin() {
 		  int x = 1;
 		  int y = 1;
 		  Heading h = Heading.N;
 		  Rover rover = new Rover(x, y, h);
 		  
 		  roverService.rightSpin(rover);
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == Heading.W);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(Heading.W, rover.getH());
 		  
 		  roverService.rightSpin(rover);
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == Heading.S);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(Heading.S, rover.getH());
 		  
 		  roverService.rightSpin(rover);
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == Heading.E);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(Heading.E, rover.getH());
 		  
 		  roverService.rightSpin(rover);
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == Heading.N);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(Heading.N, rover.getH());
 		  
 		  System.out.println("TEST RIGHTSPIN:------------------SUCCESS-----------");
 	  }
 	  
 	  @Test
-	  void testMoveForward() {
+	  public void testMoveForward() {
 		  int x = 1;
 		  int y = 1;
 		  Heading h = Heading.N;
@@ -111,9 +110,9 @@ class RoverServiceTest {
 			  for (int i=0; i<4; i++) {
 				  roverService.moveForward(rover, xMax, yMax);
 				  y++;
-				  assert(rover.getX() == x);
-				  assert(rover.getY() == y);
-				  assert(rover.getH() == h);
+				  assertEquals(x, rover.getX());
+				  assertEquals(y, rover.getY());
+				  assertEquals(h, rover.getH());
 			  }
 		  } catch (UnknownMoveException e) {
 			  fail("UnknownMoveException wrongly thrown");
@@ -129,25 +128,25 @@ class RoverServiceTest {
 		  rover.setH(h);
 		  roverService.moveForward(rover, xMax, yMax);
 		  x++;
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == h);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(h, rover.getH());
 		  
 		  h = Heading.S;
 		  rover.setH(h);
 		  roverService.moveForward(rover, xMax, yMax);
 		  y--;
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == h);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(h, rover.getH());
 		  
 		  h = Heading.W;
 		  rover.setH(h);
 		  roverService.moveForward(rover, xMax, yMax);
 		  x--;
-		  assert(rover.getX() == x);
-		  assert(rover.getY() == y);
-		  assert(rover.getH() == h);
+		  assertEquals(x, rover.getX());
+		  assertEquals(y, rover.getY());
+		  assertEquals(h, rover.getH());
 		  
 		  System.out.println("TEST MOVEFORWARD:------------------SUCCESS-----------");
 	  }

@@ -1,6 +1,7 @@
-package com.rover;
+package com.rover.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,23 +9,19 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.rover.MyAppTests;
 import com.rover.model.Heading;
 import com.rover.model.Plateau;
 import com.rover.model.Rover;
 import com.rover.service.RoverService;
 import com.rover.service.impl.NasaInterventionServiceImpl;
-import com.rover.service.impl.PlateauServiceImpl;
 
 
 
@@ -34,10 +31,9 @@ import com.rover.service.impl.PlateauServiceImpl;
  *
  */
 
-@ExtendWith(SpringExtension.class)
-@RunWith(MockitoJUnitRunner.class)
-@SpringBootTest
-@ContextConfiguration(classes = {NasaInterventionServiceImpl.class, PlateauServiceImpl.class, Plateau.class}, loader = AnnotationConfigContextLoader.class)
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = MyAppTests.class)
 public class NasaInterventionServiceTest {
 	
 	@Mock
@@ -58,10 +54,12 @@ public class NasaInterventionServiceTest {
 			rovers.add(rover2);
 			Plateau expectedPlateau = new Plateau(5, 5, rovers);
 			assertThat(plateau).isNotNull();
-			assert(plateau.equals(expectedPlateau));
+			assertTrue(expectedPlateau.equals(plateau));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("TEST GETPLATEAU:------------------SUCCESS-----------");
+
 		
 	}
 	

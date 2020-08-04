@@ -115,7 +115,7 @@ public class Plateau {
         Plateau plateau = (Plateau) obj; 
           
         // Compare the data members and return accordingly
-        return (this.xMax == plateau.getxMax()) && (this.yMax == plateau.getyMax()) && (this.rovers.equals(plateau.getRovers()));
+        return ((this.xMax == plateau.getxMax()) && (this.yMax == plateau.getyMax()));
 
 	}
 

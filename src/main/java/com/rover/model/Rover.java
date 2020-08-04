@@ -102,6 +102,28 @@ public class Rover {
 	}
 	
 	/**
+	 * Override equals method for Rover instances
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		// If the object is compared with itself then return true   
+        if (obj == this) { 
+            return true; 
+        } 
+  
+        // Check if obj is an instance of Rover or not 
+        if (!(obj instanceof Rover)) { 
+            return false; 
+        } 
+          
+        // typecast obj to Rover so that we can compare data members  
+        Rover rover = (Rover) obj; 
+          
+        // Compare the data members and return accordingly
+        return ((this.x == rover.getX()) && (this.y == rover.getY()) && (this.h == rover.getH()));
+
+	}
+	/**
 	 * returns the rover as a string
 	 */
 	@Override
