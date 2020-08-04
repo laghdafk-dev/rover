@@ -1,5 +1,5 @@
-
 package com.rover.service.impl;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,13 +22,22 @@ import com.rover.model.Rover;
 import com.rover.service.NasaInterventionService;
 import com.rover.service.PlateauService;
 
+/**
+ * Implementation of NasaInterventionService interface
+ * @author laghdafk
+ *
+ */
+
 @Component
 public class NasaInterventionServiceImpl implements NasaInterventionService {
 
 	@Resource
 	private PlateauService plateauService;
 
-	@Override
+	/**
+	 * Implementation of getPlateau
+	 * @param filePath
+	 */
 	public Plateau getPlateau(String filePath) throws UnknownMoveException, ImpossibleMoveException, IOException {
 		// Initialise the plateau on Mars
 		Plateau plateau = new Plateau();

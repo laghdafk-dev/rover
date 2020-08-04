@@ -1,10 +1,14 @@
 package com.rover.exception;
 
+/**
+ * Class UnknownMoveException extends RuntimeException class 
+ * thrown when a move is unknown
+ * 
+ * @author laghdafk
+ * 
+ */
 public class UnknownMoveException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public UnknownMoveException() {

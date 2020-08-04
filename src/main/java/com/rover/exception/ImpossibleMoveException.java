@@ -1,3 +1,5 @@
+package com.rover.exception;
+
 /**
  * Class ImpossibleMoveException extends RuntimeException class 
  * thrown when a move is not possible
@@ -5,9 +7,6 @@
  * @author laghdafk
  * 
  */
-package com.rover.exception;
-
-
 public class ImpossibleMoveException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

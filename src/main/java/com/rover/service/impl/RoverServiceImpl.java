@@ -11,6 +11,12 @@ import com.rover.model.Heading;
 import com.rover.model.Rover;
 import com.rover.service.RoverService;
 
+/**
+ * Implementation of RoverService interface
+ * @author laghdafk
+ *
+ */
+
 @Component
 public class RoverServiceImpl implements RoverService{
 

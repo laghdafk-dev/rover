@@ -1,3 +1,22 @@
+package com.rover;
+
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.annotation.Resource;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.rover.exception.ImpossibleMoveException;
+import com.rover.exception.UnknownMoveException;
+import com.rover.model.Plateau;
+import com.rover.model.Rover;
+import com.rover.service.NasaInterventionService;
+
+
 /**
  * The rover application 
  *
@@ -8,26 +27,10 @@
  * and writes the final position and heading for each rover as output
  * @input input.txt the name of the input file with rovers data
  * @output rovers final position and heading
+ * 
  * @author laghdafk
+ * 
  */
-
-
-package com.rover;
-
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import javax.annotation.Resource;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
-import com.rover.exception.ImpossibleMoveException;
-import com.rover.exception.UnknownMoveException;
-import com.rover.model.Plateau;
-import com.rover.model.Rover;
-import com.rover.service.NasaInterventionService;
 
 @SpringBootApplication
 public class RoverApplication implements CommandLineRunner {
@@ -37,9 +40,10 @@ public class RoverApplication implements CommandLineRunner {
 	
 	
 	/**
-	 * run method launches nasaInterventionService getPlateau
-	 * taking as argument 
-	 * @param input.txt in arsg[0]
+	 * run method launches nasaInterventionService.getPlateau
+	 * taking as argument the input file and writes the final
+	 * position and heading of each rover as output
+	 * @param input.txt in args[0]
 	 */
 	@Override
 	public void run(String... args) {
